@@ -44,4 +44,9 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<scm>
+		<developerConnection>scm:git:git@github.com:aaesmail/spring-pet-clinic.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 </project>
