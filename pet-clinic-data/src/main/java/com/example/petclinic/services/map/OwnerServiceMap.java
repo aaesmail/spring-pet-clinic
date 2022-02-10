@@ -3,9 +3,12 @@ package com.example.petclinic.services.map;
 import java.util.Set;
 
 import com.example.petclinic.model.Owner;
-import com.example.petclinic.services.CrudService;
+import com.example.petclinic.services.OwnerService;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+import org.springframework.stereotype.Service;
+
+@Service
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
@@ -17,8 +20,13 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
+    public Owner findByLastName(String lastName) {
+        return null;
+    }
+
+    @Override
     public Owner save(Owner owner) {
-        return super.save(owner.getId(), owner);
+        return super.save(owner);
     }
 
     @Override

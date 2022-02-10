@@ -3,9 +3,12 @@ package com.example.petclinic.services.map;
 import java.util.Set;
 
 import com.example.petclinic.model.Vet;
-import com.example.petclinic.services.CrudService;
+import com.example.petclinic.services.VetService;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+import org.springframework.stereotype.Service;
+
+@Service
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
@@ -18,7 +21,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements Crud
 
     @Override
     public Vet save(Vet vet) {
-        return super.save(vet.getId(), vet);
+        return super.save(vet);
     }
 
     @Override
