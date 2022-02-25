@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class VetController {
 
+    public static final String VIEW_VETS_INDEX = "vets/index";
+
     private final VetService vetService;
 
     public VetController(VetService vetService) {
@@ -21,6 +23,6 @@ public class VetController {
     public String listVets(Model model) {
         model.addAttribute("vets", this.vetService.findAll());
 
-        return "vets/index";
+        return VIEW_VETS_INDEX;
     }
 }

@@ -22,7 +22,6 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {
@@ -44,8 +43,45 @@ public class Pet extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
 
+    @Builder
+    public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birhDate, Set<Visit> visits) {
+        super(id);
+        this.name = name;
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birhDate;
+        if (visits != null) {
+            this.visits = visits;
+        }
+    }
+
+    public void addVisit(Visit visit) {
+        if (this.visits.contains(visit)) {
+            return;
+        }
+
+        this.visits.add(visit);
+        visit.setPet(this);
+    }
+
     @Override
     public String toString() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this)
+            return true;
+        if ((object == null) || !(object instanceof Pet))
+            return false;
+
+        final Pet pet = (Pet) object;
+
+        if (this.getId() != null && pet.getId() != null) {
+            return this.getId().equals(pet.getId());
+        }
+
+        return false;
     }
 }
